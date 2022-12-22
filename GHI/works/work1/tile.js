@@ -1,41 +1,31 @@
-class Tile {
-  constructor(a, b, c, d) {
-    this.x = a;
-    this.y = b;
-    this.w = c;
-    this.h = d;
-    this.state = false;
-  }
+i = 1.85;
+x = 0.2;
+speed = 0.01;
 
-  isHover(mx, my) {
-    if (mx >= this.x && mx < this.x + this.w) {
-      if (my >= this.y && my < this.y + this.h) {
-        return true;
-      }
-    }
-    return false;
-  }
+function setup() {
+  let boundingRects = document
+    .getElementById("p5Canvas")
+    .getBoundingClientRect();
+  let canvas = createCanvas(boundingRects.width, boundingRects.height);
+  canvas.parent("p5Canvas");
+}
 
-  toggleState() {
-    this.state = !this.state;
-  }
+function draw() {
+  background(0);
 
-  setStateByMouse(mx, my) {
-    if (this.isHover(mx, my)) {
-      this.toggleState();
-    }
+  fill(255, 255, 0);
+  ellipse(300, 300, 200, 200);
+  fill(0);
+  const dt = deltaTime * 1;
+  if (i >= 2 || i <= 1.8) {
+    speed = speed * -1;
   }
+  arc(300, 300, 200, 200, (i += speed) * PI, (x -= speed) * PI);
+}
 
-  render() {
-    noStroke();
-    if (this.state) {
-      fill(255, 0, 0);
-    } else {
-      fill(255, 127, 0);
-    }
-    push();
-    translate(this.x, this.y);
-    rect(0, 0, this.w, this.h);
-    pop();
-  }
+function mousePressed() {
+  noLoop();
+}
+function mouseReleased() {
+  loop();
 }
