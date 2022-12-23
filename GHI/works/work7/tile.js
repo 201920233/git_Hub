@@ -26,7 +26,7 @@ function draw() {
     let y = floor(random(img.height));
     let pix = img.get(x, y);
     fill(pix, 128);
-    ellipse(x, y, 7, 7);
+    rect(x, y, 7, 7);
   }
 }
 
