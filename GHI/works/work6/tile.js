@@ -45,16 +45,10 @@ function setup() {
   mConstraint = MouseConstraint.create(engine);
   World.add(world, mConstraint);
 }
-function keyPressed() {
-  if (key == "q") {
-    World.remove(world, bird.body);
-    bird = new Bird(150, 300, 40);
-    slingshot.attach(bird.body);
-  } else if (key == "w") {
-    World.remove(world, bird.body);
-    bird = new Bird(150, 300, 40);
-    slingshot.attach(bird.body);
-  }
+function mousePressed() {
+  World.remove(world, bird.body);
+  bird = new Bird(mouseX, mouseY, 40);
+  slingshot.attach(bird.body);
 }
 
 function draw() {
